@@ -1,0 +1,546 @@
+/* ========================================================================== */
+/* 1. CONFIGURACIÓN GLOBAL Y VARIABLES (Aplica a todos los entornos)           */
+/* ========================================================================== */
+:root {
+    --platinum: #e7ecef;
+    --dusk-blue: #274c77;
+    --steel-blue: #6096ba;
+    --icy-blue: #a3cef1;
+    --font-title: 'Lilita One', cursive;
+    --font-body: 'Fredoka', sans-serif;
+    color-scheme: light only;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--dusk-blue) !important;
+    color: var(--dusk-blue) !important;
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+/* ========================================================================== */
+/* 2. CONTENEDOR GENERAL: .game-wrapper (Aplica a PC, Tablet y Móvil)        */
+/* ========================================================================== */
+.game-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+    background: linear-gradient(135deg, var(--icy-blue), var(--platinum)) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .game-wrapper {
+        padding: 2rem;
+    }
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ========================================================================== */
+/* 3. PANTALLA DE PORTADA: #home-screen (Aplica a PC, Tablet y Móvil)         */
+/* ========================================================================== */
+#home-screen {
+    background-image: url('images/portada.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+#home-screen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+#home-screen > * {
+    z-index: 2;
+}
+
+/* ========================================================================== */
+/* 4. MENÚ DE HERRAMIENTAS / ENGRANAJE: .settings-container & #settings-btn  */
+/* ========================================================================== */
+.settings-container {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 50;
+}
+
+@media (min-width: 768px) {
+    .settings-container {
+        margin: 3rem;
+    }
+}
+
+.icon-btn {
+    background: var(--steel-blue);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--platinum);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(96, 150, 186, 0.4);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.icon-btn:hover {
+    background: var(--dusk-blue);
+    transform: scale(1.05);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: rgba(39, 76, 119, 0.98);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    min-width: 180px;
+    z-index: 60;
+}
+
+.menu-item {
+    background: transparent;
+    border: none;
+    color: var(--platinum);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    text-align: left;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.menu-item:hover {
+    background: var(--steel-blue);
+}
+
+/* ========================================================================== */
+/* 5. TARJETA DE TÍTULO DE PORTADA: .title-card                               */
+/* ========================================================================== */
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.title-card {
+    background: transparent !important;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.game-title {
+    font-family: var(--font-title);
+    font-size: clamp(4.2rem, 13.5vw, 6.8rem);
+    line-height: 1.05;
+    color: var(--dusk-blue);
+    margin-bottom: 12px;
+    text-shadow: 3px 3px 0px var(--platinum);
+    display: inline-block;
+}
+
+.game-title span {
+    display: inline-block;
+    position: relative;
+    animation: slidePuzzleLetter 3.5s infinite ease-in-out;
+}
+
+@keyframes slidePuzzleLetter {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    15% { transform: translate(-4px, -6px) rotate(-1deg); }
+    30% { transform: translate(5px, 3px) rotate(1.5deg); }
+    45% { transform: translate(-3px, 6px) rotate(-1.5deg); }
+    60% { transform: translate(6px, -4px) rotate(1deg); }
+    75% { transform: translate(-2px, -3px) rotate(-0.5deg); }
+    90% { transform: translate(3px, 4px) rotate(0.5deg); }
+}
+
+.game-subtitle {
+    font-size: clamp(1.25rem, 4.1vw, 1.55rem);
+    color: var(--dusk-blue);
+    font-weight: 600;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================================================== */
+/* 6. BARRA DE NAVEGACIÓN INFERIOR DE PORTADA: .bottom-nav                    */
+/* ========================================================================== */
+.bottom-nav {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 8px;
+    position: relative;
+    max-width: 550px;
+    margin: 2rem auto 2rem auto;
+    width: 100%;
+}
+
+@media (min-width: 500px) {
+    .bottom-nav {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.nav-item-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.neon-btn {
+    background: var(--platinum);
+    border: 2px solid var(--steel-blue);
+    color: var(--dusk-blue);
+    font-family: var(--font-body);
+    font-weight: 600;
+    padding: 10px 6px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(163, 206, 241, 0.7), 0 3px 5px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.neon-btn:hover {
+    background: var(--steel-blue);
+    color: var(--platinum);
+    box-shadow: 0 0 15px var(--steel-blue);
+    transform: translateY(-2px);
+}
+
+.start-highlight {
+    background: var(--dusk-blue);
+    color: var(--platinum);
+    border-color: var(--dusk-blue);
+}
+
+.start-highlight:hover {
+    background: var(--steel-blue);
+}
+
+.sub-dropdown {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    background: rgba(39, 76, 119, 0.98);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    z-index: 20;
+}
+
+.sub-item {
+    background: transparent;
+    border: none;
+    color: var(--platinum);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 8px 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.sub-item:hover {
+    background: var(--steel-blue);
+}
+
+/* ========================================================================== */
+/* 7. PANTALLA DE JUEGO: #game-screen                                         */
+/* ========================================================================== */
+#game-screen {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    position: relative;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    #game-screen {
+        padding: 0;
+    }
+}
+
+#game-screen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+#game-screen > * {
+    z-index: 2;
+}
+
+/* ========================================================================== */
+/* 8. CABECERA DE JUEGO: .game-header                                         */
+/* ========================================================================== */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: min(85vw, 50vh);
+    margin: 3rem auto auto auto;
+}
+
+.icon-btn-small {
+    background: var(--steel-blue);
+    border: none;
+    color: var(--platinum);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+
+.icon-btn-small:hover {
+    background: var(--dusk-blue);
+}
+
+.bulb-on {
+    background: #f39c12 !important;
+    box-shadow: 0 0 15px #f39c12;
+    transform: scale(1.05);
+}
+
+.bulb-off {
+    background: var(--steel-blue);
+    opacity: 0.7;
+}
+
+.game-info-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95) !important;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: var(--dusk-blue);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border: 2px solid var(--steel-blue);
+    text-align: center;
+}
+
+/* ========================================================================== */
+/* 9. CRONÓMETRO DE JUEGO: #game-sub-header                                   */
+/* ========================================================================== */
+.game-sub-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px;
+    border-radius: 10px;
+    max-width: min(85vw, 50vh);
+    margin: 2rem auto 2rem auto;
+    width: 100%;
+    font-weight: 600;
+    color: var(--dusk-blue);
+    border: 2px dashed var(--steel-blue);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ========================================================================== */
+/* 10. TABLERO DE JUEGO: #puzzle-board y .puzzle-tile                         */
+/* ========================================================================== */
+.puzzle-board {
+    width: 100%;
+    max-width: min(85vw, 50vh);
+    aspect-ratio: 1 / 1;
+    margin: auto;
+    background: rgba(39, 76, 119, 0.2);
+    border: 4px solid var(--steel-blue);
+    border-radius: 16px;
+    display: grid;
+    gap: 3px;
+    padding: 6px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.puzzle-tile {
+    background-repeat: no-repeat;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.1s ease, filter 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.puzzle-tile:hover {
+    filter: brightness(1.08);
+}
+
+.puzzle-tile:active {
+    transform: scale(0.97);
+}
+
+.puzzle-tile.empty {
+    background: rgba(255, 255, 255, 0.45);
+    border: 2px dashed rgba(39, 76, 119, 0.6);
+    cursor: default;
+    box-shadow: none;
+}
+
+@keyframes pulse-hint {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.8); }
+    50% { transform: scale(1.06); box-shadow: 0 0 15px 8px rgba(243, 156, 18, 0.8); filter: brightness(1.2); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.8); }
+}
+
+.puzzle-tile.hint-active {
+    animation: pulse-hint 1.2s infinite ease-in-out;
+    z-index: 10;
+}
+
+.puzzle-tile.hint-active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.arrow-up::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M12 4l-8 8h6v8h4v-8h6z"/></svg>'); }
+.arrow-down::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M12 20l8-8h-6v-8h-4v8h-6z"/></svg>'); }
+.arrow-left::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M4 12l8-8v6h8v4h-8v6z"/></svg>'); }
+.arrow-right::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M20 12l-8 8v-6h-8v-4h8v-6z"/></svg>'); }
+
+/* ========================================================================== */
+/* 11. CAJA DE INSTRUCCIONES INFERIOR: .game-footer-hint                      */
+/* ========================================================================== */
+.game-footer-hint {
+    text-align: center;
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+    color: var(--dusk-blue);
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.95) !important;
+    padding: 4px;
+    border-radius: 12px;
+    max-width: min(85vw, 50vh);
+    margin: 2rem auto;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid var(--steel-blue);
+}
+
+/* ========================================================================== */
+/* 12. VENTANAS MODALES (Ayuda y Victoria)                                    */
+/* ========================================================================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: var(--platinum);
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 350px;
+    border: 3px solid var(--steel-blue);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.text-center { text-align: center; }
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dusk-blue);
+    font-weight: bold;
+}
+
+.modal-content h2 {
+    font-family: var(--font-title);
+    color: var(--dusk-blue);
+    margin-bottom: 15px;
+}

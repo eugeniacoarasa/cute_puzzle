@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cute Puzzles - Deslizante</title>
+    <!-- Fuentes de Google: Lilita One & Fredoka -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        
+        <!-- ========================================== -->
+        <!-- MENÚ DE HERRAMIENTAS GLOBAL (Visible en todo) -->
+        <!-- ========================================== -->
+        <div class="settings-container">
+            <button id="settings-btn" class="icon-btn" aria-label="Configuración">
+                <svg style="pointer-events: none;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </button>
+            <div id="settings-menu" class="dropdown-menu hidden">
+                <button class="menu-item" id="sound-toggle">🔊 Sonido: <span id="sound-status">ON</span></button>
+                <button class="menu-item" id="fullscreen-toggle">⛶ Pantalla Completa</button>
+                <button class="menu-item" id="help-toggle">❓ Ayuda</button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PANTALLA 1: PORTADA PRINCIPAL -->
+        <!-- ========================================== -->
+        <div id="home-screen" class="screen">
+            <main class="main-content">
+                <div class="title-card">
+                    <h1 class="game-title">Cute<br>Puzzles</h1>
+                    <p class="game-subtitle">¡Desliza y arma el rompecabezas!</p>
+                </div>
+            </main>
+
+            <nav class="bottom-nav">
+                <div class="nav-item-wrapper">
+                    <button id="difficulty-btn" class="neon-btn">Dificultad</button>
+                    <div id="difficulty-menu" class="sub-dropdown hidden">
+                        <button class="sub-item" data-diff="easy">Fácil (3x3)</button>
+                        <button class="sub-item" data-diff="medium">Medio (4x4)</button>
+                        <button class="sub-item" data-diff="hard">Difícil (5x5)</button>
+                    </div>
+                </div>
+                <div class="nav-item-wrapper">
+                    <button id="gametype-btn" class="neon-btn">Tipo Juego</button>
+                    <div id="gametype-menu" class="sub-dropdown hidden">
+                        <button class="sub-item" data-type="free">Libre</button>
+                        <button class="sub-item" data-type="chrono">Crono</button>
+                    </div>
+                </div>
+                <div class="nav-item-wrapper">
+                    <button id="start-btn" class="neon-btn start-highlight">Inicio</button>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PANTALLA 2: TABLERO DE JUEGO -->
+        <!-- ========================================== -->
+        <div id="game-screen" class="screen hidden">
+            <header class="game-header">
+                <button id="back-home-btn" class="icon-btn-small">⬅ Volver</button>
+                <div id="info-diff" class="game-info-bar">Fácil (3x3)</div>
+                <button id="hint-btn" class="icon-btn-small bulb-off" aria-label="Pedir Pista" title="Pista">💡</button>
+            </header>
+
+            <div id="game-sub-header" class="game-sub-header hidden">
+                <span id="info-timer">⏱️ 00:00</span>
+            </div>
+
+            <div id="puzzle-board" class="puzzle-board"></div>
+
+            <div class="game-footer-hint">
+                <p>💡 Toca una pieza vecina al espacio vacío para deslizarla.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VENTANAS MODALES (Ayuda y Victoria)        -->
+    <!-- ========================================== -->
+    <div id="help-modal" class="modal hidden">
+        <div class="modal-content text-center">
+            <span id="close-help-modal" class="close">&times;</span>
+            <h2>Ayuda del Juego</h2>
+            <p style="margin-bottom: 20px; font-weight: 600; line-height: 1.5; color: var(--dusk-blue);">
+                Rompecabezas Deslizante: Haz clic en una pieza vecina al espacio vacío para deslizarla. Si te detienes 15 segundos o pulsas la bombilla, recibirás una pista.
+            </p>
+            <button id="close-help-btn" class="neon-btn start-highlight">Entendido</button>
+        </div>
+    </div>
+
+    <div id="victory-modal" class="modal hidden">
+        <div class="modal-content text-center">
+            <h2>🎉 ¡Felicidades! 🎉</h2>
+            <p style="font-weight: 600; color: var(--dusk-blue);">¡Has completado el rompecabezas deslizante con éxito!</p>
+            <button id="restart-btn" class="neon-btn start-highlight" style="margin-top: 15px;">Jugar de Nuevo</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>
