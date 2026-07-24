@@ -9,6 +9,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Lilita+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Enlace al manifiesto de la PWA -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Meta etiquetas para iOS / Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PuzzleGame">
+<script>
+  // Registrar el Service Worker automáticamente
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+        .catch(err => console.log('Error al registrar el Service Worker:', err));
+    });
+  }
+</script>
 </head>
 <body>
     <div class="game-wrapper">

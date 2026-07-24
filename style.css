@@ -450,37 +450,6 @@ body {
     box-shadow: none;
 }
 
-@keyframes pulse-hint {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.8); }
-    50% { transform: scale(1.06); box-shadow: 0 0 15px 8px rgba(243, 156, 18, 0.8); filter: brightness(1.2); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.8); }
-}
-
-.puzzle-tile.hint-active {
-    animation: pulse-hint 1.2s infinite ease-in-out;
-    z-index: 10;
-}
-
-.puzzle-tile.hint-active::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.9;
-    pointer-events: none;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-}
-
-.arrow-up::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M12 4l-8 8h6v8h4v-8h6z"/></svg>'); }
-.arrow-down::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M12 20l8-8h-6v-8h-4v8h-6z"/></svg>'); }
-.arrow-left::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M4 12l8-8v6h8v4h-8v6z"/></svg>'); }
-.arrow-right::after { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M20 12l-8 8v-6h-8v-4h8v-6z"/></svg>'); }
-
 /* ========================================================================== */
 /* 11. CAJA DE INSTRUCCIONES INFERIOR: .game-footer-hint                      */
 /* ========================================================================== */
@@ -543,4 +512,66 @@ body {
     font-family: var(--font-title);
     color: var(--dusk-blue);
     margin-bottom: 15px;
+}
+
+//* ========================================================================== */
+/* 13. SISTEMA DE PISTAS (EFECTO NEÓN Y FLECHAS PERSONALIZADAS)              */
+/* ========================================================================== */
+@keyframes pulse-neon {
+    0% { 
+        transform: scale(1); 
+        box-shadow: 0 0 10px #a3cef1, inset 0 0 5px #a3cef1; 
+    }
+    100% { 
+        transform: scale(1.05); 
+        box-shadow: 0 0 25px #a3cef1, 0 0 40px #a3cef1, inset 0 0 12px #a3cef1; 
+    }
+}
+
+@keyframes bounce-arrow {
+    0% { transform: translate(-50%, -50%) translateY(0); }
+    100% { transform: translate(-50%, -50%) translateY(-5px); }
+}
+
+.puzzle-tile.hint-active {
+    border: 4px solid #a3cef1 !important;
+    box-shadow: 0 0 15px #a3cef1, 0 0 30px #a3cef1, inset 0 0 10px #a3cef1 !important;
+    animation: pulse-neon 0.6s infinite alternate !important;
+    position: relative !important;
+    z-index: 999 !important;
+}
+
+.puzzle-tile.hint-active::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 44px !important;
+    height: 44px !important;
+    background-color: rgba(163, 206, 241, 0.9) !important;
+    border-radius: 50% !important;
+    border: 2px solid #e7ecef !important;
+    background-size: 26px 26px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 0 15px #a3cef1, 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    animation: bounce-arrow 0.5s infinite alternate !important;
+    filter: drop-shadow(0 0 3px #e7ecef) drop-shadow(0 0 10px #a3cef1) !important;
+}
+
+/* Flechas individuales con los colores correctos */
+.puzzle-tile.hint-active.arrow-up::after { 
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-8 8h6v8h4v-8h6z" fill="%23274c77" stroke="%23e7ecef" stroke-width="2" stroke-linejoin="round"/></svg>') !important; 
+}
+.puzzle-tile.hint-active.arrow-down::after { 
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20l8-8h-6v-8h-4v8h-6z" fill="%23274c77" stroke="%23e7ecef" stroke-width="2" stroke-linejoin="round"/></svg>') !important; 
+}
+.puzzle-tile.hint-active.arrow-left::after { 
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 12l8-8v6h8v4h-8v6z" fill="%23274c77" stroke="%23e7ecef" stroke-width="2" stroke-linejoin="round"/></svg>') !important; 
+}
+.puzzle-tile.hint-active.arrow-right::after { 
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12l-8 8v-6h-8v-4h8v-6z" fill="%23274c77" stroke="%23e7ecef" stroke-width="2" stroke-linejoin="round"/></svg>') !important; 
 }
