@@ -514,7 +514,7 @@ body {
     margin-bottom: 15px;
 }
 
-//* ========================================================================== */
+/* ========================================================================== */
 /* 13. SISTEMA DE PISTAS (EFECTO NEÓN Y FLECHAS PERSONALIZADAS)              */
 /* ========================================================================== */
 @keyframes pulse-neon {
@@ -574,4 +574,34 @@ body {
 }
 .puzzle-tile.hint-active.arrow-right::after { 
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12l-8 8v-6h-8v-4h8v-6z" fill="%23274c77" stroke="%23e7ecef" stroke-width="2" stroke-linejoin="round"/></svg>') !important; 
+}
+/* ========================================================================== */
+/* 14. CRÉDITOS / FOOTER FLOTANTE                                            */
+/* ========================================================================== */
+.game-footer-credits {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--dusk-blue);
+    opacity: 0.85;
+    z-index: 10;
+    pointer-events: auto; /* Permite hacer clic en el enlace de GitHub */
+}
+
+.game-footer-credits p {
+    margin: 0;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+.game-footer-credits a {
+    color: var(--dusk-blue);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.game-footer-credits a:hover {
+    color: var(--steel-blue);
 }
